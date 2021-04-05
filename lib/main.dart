@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sanctum_boilerplate/providers/auth.dart';
 
 import 'package:flutter_sanctum_boilerplate/widgets/nav-drawer.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 
@@ -15,7 +16,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
