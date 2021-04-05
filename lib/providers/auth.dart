@@ -12,6 +12,7 @@ class Auth extends ChangeNotifier {
 
   Future login ({ Map credentials }) async {
     _isAuthenticated = true;
+    
 
     Dio.Response response = await dio().post(
       'auth/token',
