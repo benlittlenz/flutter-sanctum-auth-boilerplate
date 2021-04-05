@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sanctum_boilerplate/providers/auth.dart';
+
 import 'package:flutter_sanctum_boilerplate/widgets/nav-drawer.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Auth(),
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
