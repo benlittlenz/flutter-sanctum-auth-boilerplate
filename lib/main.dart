@@ -46,7 +46,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: NavDrawer(),
       body: Center(
-        child: Text("Not logged in")
+        child: Consumer<Auth>(
+          builder: (context, auth, child) {
+            if(auth.authenticated) {
+              return Text('You are logged in')
+            } else {
+              return Text("You are not logged in")
+            }
+          },
+        ),
       ),
     );
   }
