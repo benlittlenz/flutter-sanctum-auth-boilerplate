@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/material.dart';
 import 'package:flutter_sanctum_boilerplate/dio.dart';
 import 'package:flutter_sanctum_boilerplate/models/user.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 class Auth extends ChangeNotifier {
   bool _isAuthenticated = false;
@@ -36,9 +37,21 @@ class Auth extends ChangeNotifier {
       _user = User.fromJson(json.decode(response.toString()));
       _isAuthenticated = true;
     } catch (err) {
-      //
+      _isAuthenticated = false;
     }
     notifyListeners();
+  }
+
+  Future getDeviceId () async {
+    String deviceId;
+
+    try {
+      deviceId = await PlatformDeviceId.getDeviceId;
+    } catch (err) {
+      //
+    }
+
+    return deviceId;
   }
 
   void logout () {
