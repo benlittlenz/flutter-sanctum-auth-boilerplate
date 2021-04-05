@@ -38,6 +38,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final storage = FlutterSecureStorage();
+
+  void _attempAuthentication () async {
+    final key = await storage.read(key: 'auth');
+    Provider.of<Auth>(context, listen: false).attempt(key);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _attempAuthentication();
+  }
 
   @override
   Widget build(BuildContext context) {
