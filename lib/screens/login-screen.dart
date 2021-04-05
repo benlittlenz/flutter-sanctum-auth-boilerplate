@@ -20,6 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
         'password': _password,
       }
     );
+
+    Navigator.pop(context);
   }
 
   @override
