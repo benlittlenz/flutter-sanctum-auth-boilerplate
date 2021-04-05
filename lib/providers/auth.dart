@@ -1,13 +1,26 @@
 
+import 'dart:convert';
+
+import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/material.dart';
+import 'package:flutter_sanctum_boilerplate/dio.dart';
 
 class Auth extends ChangeNotifier {
   bool _isAuthenticated = false;
 
   bool get authenticated => _isAuthenticated;
 
-  void login ({ Map credentials }) {
+  Future login ({ Map credentials }) async {
     _isAuthenticated = true;
+
+    Dio.Response response = await dio().post(
+      'auth/token',
+      data: json.encode(credentials)
+    );
+
+    String token = json.decode(response.toString())['token'];
+
+    debugPrint(token);
 
     notifyListeners();
   }
