@@ -7,6 +7,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  String _email;
+  String _password;
+
+  void submit () {
+    debugPrint(_email);
+    debugPrint(_password);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: Text("Login Page"),
       ),
-      body: SingleChildScrollView(
+      body: Form(
+        key: _formKey,
         child: Column(
           children: <Widget>[
             Padding(
@@ -23,23 +33,30 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
+              child: TextFormField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    hintText: 'Enter email'),
+                  onSaved: (value) => {
+                    _email = value
+                  },
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
-              child: TextField(
+              child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
-                    hintText: 'Enter secure password'),
+                    hintText: 'Enter password'),
+                    onSaved: (value) => {
+                    _password = value
+                  },
               ),
+
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15)
@@ -51,8 +68,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => MyHomePage()));
+                  _formKey.currentState.save();
+
+                  this.submit();
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (_) => MyHomePage()));
                 },
                 child: Text(
                   'Login',
