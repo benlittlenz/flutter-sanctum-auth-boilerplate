@@ -15,9 +15,12 @@ class Auth extends ChangeNotifier {
   User get user => _user;
 
   Future login ({ Map credentials }) async {
+    String deviceId = await getDeviceId();
+
     Dio.Response response = await dio().post(
       'auth/token',
-      data: json.encode(credentials)
+      data: json.encode(credentials..addAll({'deviceId': deviceId }))
+      //data: json.encode(credentials)
     );
     String token = json.decode(response.toString())['token'];
 
