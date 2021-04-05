@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                initialValue: 'abc@abc.com',
+                initialValue: 'joe@doe.com',
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
+                    labelText: 'password',
                     hintText: 'Enter password'),
                     onSaved: (value) => {
                     _password = value
