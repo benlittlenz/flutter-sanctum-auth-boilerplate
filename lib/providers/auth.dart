@@ -4,16 +4,15 @@ import 'dart:convert';
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/material.dart';
 import 'package:flutter_sanctum_boilerplate/dio.dart';
+import 'package:flutter_sanctum_boilerplate/models/user.dart';
 
 class Auth extends ChangeNotifier {
   bool _isAuthenticated = false;
+  User _user;
 
   bool get authenticated => _isAuthenticated;
 
   Future login ({ Map credentials }) async {
-    _isAuthenticated = true;
-    
-
     Dio.Response response = await dio().post(
       'auth/token',
       data: json.encode(credentials)
@@ -21,8 +20,6 @@ class Auth extends ChangeNotifier {
     String token = json.decode(response.toString())['token'];
 
     await attempt(token);
-
-    notifyListeners();
   }
 
   Future attempt (String token) async {
@@ -35,11 +32,12 @@ class Auth extends ChangeNotifier {
           }
         )
       );
-
-      debugPrint(response.toString());
+      _user = User.fromJson(json.decode(response.toString()));
+      _isAuthenticated = true;
     } catch (err) {
       //
     }
+    notifyListeners();
   }
 
   void logout () {

@@ -12,7 +12,7 @@ class NavDrawer extends StatelessWidget {
         return ListView(
           children: [
             ListTile(
-              title: Text('User Name'),
+              title: Text(),
             ),
             ListTile(
                 title: Text('Posts'),
