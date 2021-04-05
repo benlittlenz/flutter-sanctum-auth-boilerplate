@@ -11,6 +11,7 @@ class Auth extends ChangeNotifier {
   User _user;
 
   bool get authenticated => _isAuthenticated;
+  User get user => _user;
 
   Future login ({ Map credentials }) async {
     Dio.Response response = await dio().post(
