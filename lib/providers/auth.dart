@@ -57,6 +57,10 @@ class Auth extends ChangeNotifier {
     return await _storage.read(key: 'auth');
   }
 
+  deleteToken () async {
+    await _storage.delete(key: 'auth');
+  }
+
   Future getDeviceId () async {
     String deviceId;
 
@@ -81,6 +85,8 @@ class Auth extends ChangeNotifier {
         headers: { 'auth': true }
       )
     );
+
+    await this.deleteToken();
 
     notifyListeners();
   }
