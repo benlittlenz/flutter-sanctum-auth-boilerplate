@@ -16,21 +16,13 @@ class JobScreen extends StatefulWidget {
 }
 
 class _JobScreenState extends State<JobScreen> {
-  var token = Auth().fetchtoken();
-  Future<List<Job>> getJobs () async {
-    Dio.Response response = await dio().get('http://10.0.2.2:8000/api/jobs',
-    options: Dio.Options(
-      headers: { 'Authorization': 'Bearer 24|Kw5nev1ExzNYrNlXuuEzeCiX3tSbh2pVdzMeJEgZ' }
-    )
+  Future<List<Job>> getJobs() async {
+    Dio.Response response = await dio().get(
+      'jobs',
+      options: Dio.Options(
+        headers: { 'auth': true }
+      )
     );
-  // Future<List<Job>> getJobs() async {
-  //   Dio.Response response = await dio().get(
-  //     'jobs',
-  //     options: Dio.Options(
-  //       //headers: { 'Authorization': 'Bearer $token' }
-  //       headers: { 'auth': true }
-  //     )
-  //   );
 
     List jobs = json.decode(response.toString());
 

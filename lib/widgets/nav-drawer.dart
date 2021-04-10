@@ -18,7 +18,7 @@ class NavDrawer extends StatelessWidget {
                 title: Text('Jobs'),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PostScreen()));
+                      MaterialPageRoute(builder: (context) => JobScreen()));
                 }),
             ListTile(
                 title: Text('Logout'),
