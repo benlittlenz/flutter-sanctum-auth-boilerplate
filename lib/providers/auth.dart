@@ -9,7 +9,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 
 class Auth extends ChangeNotifier {
-  final storage = new FlutterSecureStorage();
+  final _storage = FlutterSecureStorage();
 
   bool _isAuthenticated = false;
   User _user;
@@ -50,7 +50,11 @@ class Auth extends ChangeNotifier {
   }
 
   storeToken(String token) async {
-    await storage.write(key: 'auth', value: token);
+    await _storage.write(key: 'auth', value: token);
+  }
+
+  Future fetchtoken () async {
+    return await _storage.read(key: 'auth');
   }
 
   Future getDeviceId () async {
@@ -59,9 +63,9 @@ class Auth extends ChangeNotifier {
     try {
       deviceId = await PlatformDeviceId.getDeviceId;
     } catch (err) {
-      //
+      debugPrint('No device Id');
     }
-
+    debugPrint(deviceId);
     return deviceId;
   }
 

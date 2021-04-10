@@ -42,14 +42,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _attempAuthentication () async {
     final key = await storage.read(key: 'auth');
+    //debugPrint(key);
     Provider.of<Auth>(context, listen: false).attempt(key);
   }
 
   @override
   void initState() {
-    super.initState();
-
     _attempAuthentication();
+    super.initState();
   }
 
   @override
