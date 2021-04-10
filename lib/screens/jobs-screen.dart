@@ -10,12 +10,12 @@ import 'package:flutter_sanctum_boilerplate/providers/auth.dart';
 
 import '../dio.dart';
 
-class PostScreen extends StatefulWidget {
+class JobScreen extends StatefulWidget {
   @override
-  _PostScreenState createState() => _PostScreenState();
+  _JobScreenState createState() => _JobScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _JobScreenState extends State<JobScreen> {
   var token = Auth().fetchtoken();
   Future<List<Job>> getJobs () async {
     Dio.Response response = await dio().get('http://10.0.2.2:8000/api/jobs',

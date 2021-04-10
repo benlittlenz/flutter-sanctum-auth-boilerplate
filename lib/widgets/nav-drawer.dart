@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sanctum_boilerplate/providers/auth.dart';
 import 'package:flutter_sanctum_boilerplate/screens/login-screen.dart';
-import 'package:flutter_sanctum_boilerplate/screens/posts-screen.dart';
+import 'package:flutter_sanctum_boilerplate/screens/jobs-screen.dart';
 import 'package:provider/provider.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -15,7 +15,7 @@ class NavDrawer extends StatelessWidget {
               title: Text(auth.user.name),
             ),
             ListTile(
-                title: Text('Posts'),
+                title: Text('Jobs'),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PostScreen()));
